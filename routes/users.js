@@ -3,12 +3,30 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.render('index', { title: 'Express' });
 });
 
 /* GET users listing. */
-router.get('/view', function(req, res, next) {
-  res.send('user view!!');
+router.get('/create', function(req, res, next) {
+  var vm = { title : "Create an account" };
+  res.render('users/create', vm);
+});
+
+/* POST create account. */
+router.post('/create', function(req, res, next) {
+  var somethingWentWrong = false;
+  
+  if(somethingWentWrong){
+    var vm = { 
+      title : "Create an account", 
+      input: req.body,
+      error: "Error creating account"
+    };
+    delete vm.input.password;
+    return res.render('users/create', vm);
+  };
+  
+  res.redirect('/orders');
 });
 
 
