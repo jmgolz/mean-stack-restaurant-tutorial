@@ -10,7 +10,7 @@ module.exports = function(){
             }
             
             if(!user || user.password !== password){
-                return(null, null);
+                return next(null, null);
             }
             
             next(null, user);
