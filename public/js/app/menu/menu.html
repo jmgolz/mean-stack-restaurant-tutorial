@@ -1,0 +1,12 @@
+<div class="textwidget margin-top-30">
+    <h1 ng-bind="vm.restaurant.na"></h1>
+</div>
+<div class="widget">
+    <strong ng-hide="vm.restaurant">Loading...</strong>
+    <div class="category">
+        <h2 ng-bind="cuisine"></h2>
+        <ul>
+            <li ng-repeat="cuisine in vm.restaurant.cu"><a href="#"><strong ng-bind="cuisine"></strong></a></li>
+        </ul>
+    </div>
+</div>
