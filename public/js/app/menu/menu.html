@@ -6,7 +6,12 @@
     <div class="category">
         <h2 ng-bind="cuisine"></h2>
         <ul>
-            <li ng-repeat="cuisine in vm.restaurant.cu"><a href="#"><strong ng-bind="cuisine"></strong></a></li>
+            <li ng-repeat="cuisine in vm.restaurant.cu">
+                <strong ng-bind="cuisine" ng-click="vm.viewItem(cuisine)" style="cursor:pointer;"></strong>
+            </li>
         </ul>
     </div>
 </div>
+<script type="text/ng-template" id="item.html">
+    <h1 ng-bind="vm.activeItem"></h1>
+</script>
