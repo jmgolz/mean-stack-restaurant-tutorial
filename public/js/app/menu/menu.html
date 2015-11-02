@@ -3,6 +3,7 @@
 </div>
 <div class="widget">
     <strong ng-hide="vm.restaurant">Loading...</strong>
+    <input type="submit" value="checkout" ng-show="vm.items.length > 0" ng-click="vm.checkout()" />
     <div class="category">
         <h2 ng-bind="cuisine"></h2>
         <ul>
@@ -13,5 +14,13 @@
     </div>
 </div>
 <script type="text/ng-template" id="item.html">
-    <h1 ng-bind="vm.activeItem"></h1>
+    <h1 ng-bind="vm.activeItem.item"></h1>
+    <ul>
+        <li ng-repeat="option in vm.activeItem.options">
+            <input type="checkbox" ng-click="vm.toggleOption(option)" />
+            <span ng-bind="option" />
+        </li>
+    </ul>
+    <button ng-click="vm.addItem(vm.activeItem)">Add to Order</button>
+    <button ng-click="vm.cancel()">Cancel</button>
 </script>
