@@ -22,6 +22,19 @@ router.get('/api', restricts, function(req, res, next) {
   orderService.getRestaurants(req, res, next);
 });
 
+router.post('/api/create-order', restricts, function(req, res, next) {
+    console.log("full initially sent object");
+    console.log(req);
+    
+    orderService.createOrder(req.user._doc, req.body, function(err, orderId){
+      if(err){
+        return res.status(500).json({error: 'Failed to create order :('});
+      }
+      req.session.order_id = orderId;
+      res.json({success: true});
+    });
+});
+
 router.get('/menu/:restaurantId', function(req, res, next){
   orderService.getRestaurantDetails(req.params.restaurantId, function(err, details){
     if(err){

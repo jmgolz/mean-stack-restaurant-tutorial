@@ -59,7 +59,21 @@
           };
           
           vm.checkout = function(){
-              $location.url('/payment');
+              var food = {
+                  restId: $routeParams.restaurantId, 
+                  restName: vm.restaurant.na,
+                  items: vm.items
+              };
+              
+              console.log("object sent by menu checkout");
+              console.log(food);
+              
+              api.createOrder(food).then(function(data){
+                  if(data.success){
+                     return $location.url('/payment');
+                  }
+                  alert('Something went wrong...');
+              });
           };
        }
    }

@@ -7,7 +7,8 @@
    function apiFactory($http){
        return {
            getRestaurants : getRestaurants,
-           getRestaurantDetails : getRestaurantDetails
+           getRestaurantDetails : getRestaurantDetails,
+           createOrder : createOrder
        };
        
     function getRestaurants(){
@@ -27,6 +28,14 @@
                  }
              }
              return restaurantFound;
+         });
+     };
+     
+     function createOrder(food){
+         console.log("processing food in API service:");
+         console.log(food);
+         return $http.post('/orders/api/create-order', food).then(function(response){
+             return response.data;
          });
      };
    };
